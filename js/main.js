@@ -1,29 +1,46 @@
-// set global variables
+// set constants
+    //card values 2-10
+    // card j,q,k = 10
+    // card ace = 1 or 11 depending on handTotal
+//set global variables
+    //hand total
+    //deck
+    //winner
+//cache element
+    //current player, computer hand
+    // message about game state(win, bust, lose, blackjack)
+    //win loses and ties
+// event listeners
+    //deal
+    //hit
+    //hold
+//set up init
+    //set scores = 0
+    // set player hand to empty {}
+    // set computer hand to empty {}
+    //set winner to null
+    //render()
+// render function
+    // update score to dom
+    // update cards to dom
+// evaluate hand total
+    // if player hand is 21 with two cards (black jack!)
+    // else if player hand is 21 with more than two cards (end player turn)
+    // else if player hand is 21 or more (end player turn, bust)
+    // if computer hand is 21 with two cards (computer wins unless player won)
+    // else if computer hand is 21 or lower compare to player highest wins unless tie
+    // else if computer busts and player is lower than 21 player wins
+    // else if both computer and player bust = tie
+// hand total
+    // reduce hand arrays
+// set up initiate deal
+    //deals two cards to player
+    // deal one visible and one hidden to computer
+// set up hit button
+    //add random card to hand, recalculate total of hand
+// set up hold button
+    //disables hit, intiates computer turn
+// computer turn
+    // computer will draw card if total less than 15
 
-//cached element references
-    //card values
-    
-
-
-// setup init
-    // generate deck of cards
-    //initiates deal
-    //redeal function in event of loss or win
-    //deck is always regenerated each deal
-
-
-// set up deal function
-    // player dealt two cards
-    // computer dealt one visible, one hidden card
-// set up hit function
-    //draws a card when used 
-// player hand calculates if 21 or over
-    // if over 21 auto lose
-    // utilize hit function is not 21 and over
-    //when hold intiates dealer
-// set up dealer
-    //dealer reveals hidden card, calcualtes if total 21 or > 15
-    // if lower than 15 dealer hits
-    // if both dealer and player have some number = draw
-
-
+// generate random card selector
