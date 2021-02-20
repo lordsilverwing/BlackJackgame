@@ -14,6 +14,8 @@
     //deal
     //hit
     //hold
+
+    
 //set up init
     //set scores = 0
     // set player hand to empty {}
