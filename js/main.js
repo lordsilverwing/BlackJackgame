@@ -11,8 +11,18 @@ let deck;
 let winner;
 //cache element
     //current player, computer hand
+const handEls = {
+    player:
+    computer:
+}
     // message about game state(win, bust, lose, blackjack)
+const gameMessage = document.getElementById('message')
     //win loses and ties
+const scoreEls = {
+    wins: document.getElementById('wintotal'),
+    losses: document.getElementById('losstotal'),
+    ties: document.getElementById('tietotal')
+}
 // event listeners
     //deal
 document.getElementById("deal").addEventListener("click", Deal)
@@ -21,13 +31,24 @@ document.getElementById("hit").addEventListener("click", Hit)
     //hold
 document.getElementById("hold").addEventListener("click", Hold)
 
-    
+init() 
 //set up init
+function init(){
     //set scores = 0
+    scores = {
+        player: 0,
+        computer: 0,
+        ties: 0
+    }
     // set player hand to empty {}
+    playerHand = {}
     // set computer hand to empty {}
+    computerHand = {}
     //set winner to null
+    winner = null;
     //render()
+    render();
+}
 // render function
     // update score to dom
     // update cards to dom
