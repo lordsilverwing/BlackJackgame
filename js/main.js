@@ -4,16 +4,22 @@
     // card ace = 1 or 11 depending on handTotal
 //set global variables
     //hand total
+let handTotal;
     //deck
+let deck;
     //winner
+let winner;
 //cache element
     //current player, computer hand
     // message about game state(win, bust, lose, blackjack)
     //win loses and ties
 // event listeners
     //deal
+document.getElementById("deal").addEventListener("click", Deal)
     //hit
+document.getElementById("hit").addEventListener("click", Hit)
     //hold
+document.getElementById("hold").addEventListener("click", Hold)
 
     
 //set up init
@@ -37,11 +43,20 @@
     // reduce hand arrays
     // create two arrays, high total and low total to handle aces
 // set up initiate deal
+function Deal(){
+    console.log("Deal!")
+}
     //deals two cards to player
     // deal one visible and one hidden to computer
 // set up hit button
+function Hit(){
+    console.log("Hit!")
+}
     //add random card to hand, recalculate total of hand
 // set up hold button
+function Hold(){
+    console.log("Hold!")
+}
     //disables hit, intiates computer turn
 // computer turn
     // computer will draw card if total less than 15
