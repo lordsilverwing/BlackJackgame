@@ -1,19 +1,36 @@
 // set constants
+const suitsArr = ["diamonds", "hearts", "spades", "clubs"]
     //card values 2-10
+const cardsPerSuit = 13;
+const cardMap = {
+    1 : "A",
+    11 : "J",
+    12 : "Q",
+    13 : "K"
+}
+function getCardClasses(suit, value, isFaceDown){
+    const output = ["card", "large"]
+     if (isFaceDown){
+         output.push("back-red")
+     } else {
+         output.push(suitsArr[suit])
+         output.push(cardMap[value] || `r${value < 10 ? "0" : ""}${value}`)
+     }
+    return output;
+}
     // card j,q,k = 10
     // card ace = 1 or 11 depending on handTotal
 //set global variables
     //hand total
 let handTotal;
     //deck
-let deck;
     //winner
 let winner;
 //cache element
     //current player, computer hand
 const handEls = {
-    player:
-    computer:
+    player: document.getElementById('playerhand'),
+    computer: document.getElementById('computerhand')
 }
     // message about game state(win, bust, lose, blackjack)
 const gameMessage = document.getElementById('message')
@@ -41,6 +58,7 @@ function init(){
         ties: 0
     }
     // set player hand to empty {}
+    let deck = generateDeck();
     playerHand = {}
     // set computer hand to empty {}
     computerHand = {}
@@ -50,9 +68,48 @@ function init(){
     render();
 }
 // render function
+function render(){
+
+}
     // update score to dom
     // update cards to dom
+ // hand total
+ function getHandTotal(hand){
+     const output = {
+         high: 0,
+         low: 0
+     }
+    const cards = [...hand].sort(function(a, b){
+         return b.value - a.value;
+     })
+     for (i = 0; i < cards.length; i++){     
+         output.low += Math.min(cards.value, 10)
+         output.high += Math.min(cards.value, 10)
+         if (cards.value === 1 && output.high < 12){
+            output.high += 10;
+         }
+     }
+
+     return output
+ }
+    // reduce hand arrays
+    // create two arrays, high total and low total to handle aces   
 // evaluate hand total
+function determineHandValue(handTotal){
+    return handTotal.high > 21 ? handTotal.low : handTotal.high;
+}
+
+function determinePlayerOutcome(playerHand, computerHand){
+    const playerTotal = determineHandValue(getHandTotal(playerHand));
+    const computerTotal = determineHandValue(getHandTotal(computerHand));
+    if (playerTotal=== computerTotal){
+        return 0
+    } else if (playerTotal > computerTotal){
+        return 1
+    } else {
+        return -1;
+    }
+}
     // if player hand is 21 with two cards (black jack!)
     // else if player hand is 21 with more than two cards (end player turn)
     // else if player hand is 21 or more (end player turn, bust)
@@ -60,12 +117,9 @@ function init(){
     // else if computer hand is 21 or lower compare to player highest wins unless tie
     // else if computer busts and player is lower than 21 player wins
     // else if both computer and player bust = tie
-// hand total
-    // reduce hand arrays
-    // create two arrays, high total and low total to handle aces
 // set up initiate deal
 function Deal(){
-    console.log("Deal!")
+    shuffleDeck(generateDeck())
 }
     //deals two cards to player
     // deal one visible and one hidden to computer
@@ -81,5 +135,16 @@ function Hold(){
     //disables hit, intiates computer turn
 // computer turn
     // computer will draw card if total less than 15
-
-// generate random card selector
+// generate deck
+function generateDeck(){
+    const output = []
+    for (let i = 0; i < suitsArr.length; i++){
+        for (let j = 1; j <= cardsPerSuit; j++){
+            output.push({suit : i, value : j})
+        }
+    }
+    return output;
+}
+function shuffleDeck(deck){
+   return deck.sort(() => Math.random() - Math.random())
+}

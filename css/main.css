@@ -50,3 +50,13 @@ h1 {
     height: 40px;
     width: 70px;
 }
+.main #playerhand{
+    position: absolute;
+    bottom: 15%;
+    align-items: center;
+}
+.main #computerhand{
+    position: absolute;
+    top: 15%;
+    align-items: center;
+}
