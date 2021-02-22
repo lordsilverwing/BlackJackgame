@@ -1,0 +1,48 @@
+html, * {
+    font-family: helvetica;
+    box-sizing: border-box;
+  }
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+h1 {
+    text-align: center;
+}  
+.main {
+    display: flex;
+    position: relative;
+    box-align: center;
+    height: 450px;
+    width: 800px;
+    justify-content: center;
+    align-items: center;
+    background-color:darkgreen;
+    padding: 5px;
+    border: 10px solid saddlebrown;
+  }
+.main #message{
+    text-align: center;
+}
+.main .score{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.main .buttonwrap {
+    position: absolute;
+    bottom: 10%;
+    left: 10%;
+    list-style-type: none;
+    padding: 0;
+}
+.main button{
+    text-align: center;
+    background-color: #AE7139;
+    height: 40px;
+    width: 70px;
+}

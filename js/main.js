@@ -35,6 +35,7 @@
     // else if both computer and player bust = tie
 // hand total
     // reduce hand arrays
+    // create two arrays, high total and low total to handle aces
 // set up initiate deal
     //deals two cards to player
     // deal one visible and one hidden to computer
