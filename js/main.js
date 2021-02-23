@@ -45,7 +45,8 @@ const scoreEls = {
     //deal
 document.getElementById("deal").addEventListener("click", Deal)
     //hit
-document.getElementById("hit").addEventListener("click", Hit)
+let hitButton = document.getElementById("hit")
+hitButton.addEventListener("click", Hit)
     //hold
 document.getElementById("hold").addEventListener("click", Hold)
 
@@ -83,9 +84,9 @@ function render(){
          return b.value - a.value;
      })
      for (i = 0; i < cards.length; i++){     
-         output.low += Math.min(cards.value, 10)
-         output.high += Math.min(cards.value, 10)
-         if (cards.value === 1 && output.high < 12){
+         output.low += Math.min(cards[i].value, 10)
+         output.high += Math.min(cards[i].value, 10)
+         if (cards[i].value === 1 && output.high < 12){
             output.high += 10;
          }
      }
@@ -99,10 +100,10 @@ function determineHandValue(handTotal){
     return handTotal.high > 21 ? handTotal.low : handTotal.high;
 }
 
-function determinePlayerOutcome(playerHand, computerHand){
+function determinePlayerOutcome(player, computer){
     const playerTotal = determineHandValue(getHandTotal(playerHand));
     const computerTotal = determineHandValue(getHandTotal(computerHand));
-    if (playerTotal=== computerTotal){
+    if (playerTotal === computerTotal){
         return 0
     } else if (playerTotal > computerTotal){
         return 1
@@ -121,21 +122,54 @@ function determinePlayerOutcome(playerHand, computerHand){
 function Deal(){
     shuffleDeck(deck)
     playerHand = deck.slice(0, 2);
-    computerHand = deck.slice(3, 5);
+    computerHand = deck.slice(2, 4);
+    computerHand[0].isFaceDown = true;
+    hit = 4;
+    hitButton.disabled = false;
+    gameMessage.innerText = "The Dealer and Player have been dealt two cards!"
 }
     //deals two cards to player
     // deal one visible and one hidden to computer
 // set up hit button
+let hit;
 function Hit(){
     console.log("Hit!")
+    playerHand.push(deck[hit])
+    hit++;
+    if (getHandTotal(playerHand).low > 21){
+        hitButton.disabled = true;
+        gameMessage.innerText = "Player has Busted!"
+    } else if (getHandTotal(playerHand).low === 21){
+        gameMessage.innerText = "I to like to live dangerously"
+    }
 }
     //add random card to hand, recalculate total of hand
 // set up hold button
 function Hold(){
-    console.log("Hold!")
+    hitButton.disabled = true;
+    computerTurn()   
 }
     //disables hit, intiates computer turn
 // computer turn
+function computerTurn(){
+    computerHand[0].isFaceDown = false;
+    while (getHandTotal(computerHand).low <= 15){
+        computerHand.push(deck[hit])
+        hit++
+        computerTurn();
+    }
+    if (getHandTotal(computerHand).low > 21){
+        gameMessage.innerText = "Dealer has busted!"
+    }
+    //if (getHandTotal(computerHand).low <= 15){
+     //   computerHand.push(deck[hit])
+     //   hit++;
+     //   computerTurn();
+    //} else if (getHandTotal(computerHand).low > 21){
+     //   gameMessage.innerText = "Dealer has busted!"
+   // }
+    //determinePlayerOutcome(playerHand, computerHand)
+}
     // computer will draw card if total less than 15
 // generate deck
 function generateDeck(){
