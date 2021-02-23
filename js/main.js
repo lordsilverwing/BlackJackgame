@@ -24,6 +24,7 @@ function getCardClasses(suit, value, isFaceDown){
     //hand total
 let handTotal;
     //deck
+let deck = generateDeck();
     //winner
 let winner;
 //cache element
@@ -58,7 +59,6 @@ function init(){
         ties: 0
     }
     // set player hand to empty {}
-    let deck = generateDeck();
     playerHand = {}
     // set computer hand to empty {}
     computerHand = {}
@@ -119,7 +119,9 @@ function determinePlayerOutcome(playerHand, computerHand){
     // else if both computer and player bust = tie
 // set up initiate deal
 function Deal(){
-    shuffleDeck(generateDeck())
+    shuffleDeck(deck)
+    playerHand = deck.slice(0, 2);
+    computerHand = deck.slice(3, 5);
 }
     //deals two cards to player
     // deal one visible and one hidden to computer
