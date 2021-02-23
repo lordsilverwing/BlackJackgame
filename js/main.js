@@ -68,9 +68,20 @@ function init(){
     //render()
     render();
 }
+function removeAllChildren(parent){
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
 // render function
 function render(){
-
+    
+    removeAllChildren(handEls.player)
+    removeAllChildren(handEls.computer)
+    generateCardMarkup(playerHand).forEach(card => handEls.player.appendChild(card));
+    generateCardMarkup(computerHand).forEach(card => handEls.computer.appendChild(card));
+          
+    
 }
     // update score to dom
     // update cards to dom
@@ -100,7 +111,7 @@ function determineHandValue(handTotal){
     return handTotal.high > 21 ? handTotal.low : handTotal.high;
 }
 
-function determinePlayerOutcome(player, computer){
+function determinePlayerOutcome(){
     const playerTotal = determineHandValue(getHandTotal(playerHand));
     const computerTotal = determineHandValue(getHandTotal(computerHand));
     if (playerTotal === computerTotal){
@@ -120,13 +131,18 @@ function determinePlayerOutcome(player, computer){
     // else if both computer and player bust = tie
 // set up initiate deal
 function Deal(){
+    deck.forEach(card => card.isFaceDown = false)
     shuffleDeck(deck)
     playerHand = deck.slice(0, 2);
     computerHand = deck.slice(2, 4);
     computerHand[0].isFaceDown = true;
     hit = 4;
     hitButton.disabled = false;
+    render();
     gameMessage.innerText = "The Dealer and Player have been dealt two cards!"
+    if (getHandTotal(playerHand).high === 21){
+        gameMessage.innerText = "Player has gotten Blackjack! You win!"
+    }
 }
     //deals two cards to player
     // deal one visible and one hidden to computer
@@ -142,12 +158,14 @@ function Hit(){
     } else if (getHandTotal(playerHand).low === 21){
         gameMessage.innerText = "I to like to live dangerously"
     }
+    render();
 }
     //add random card to hand, recalculate total of hand
 // set up hold button
 function Hold(){
     hitButton.disabled = true;
-    computerTurn()   
+    computerTurn()
+    determinePlayerOutcome();   
 }
     //disables hit, intiates computer turn
 // computer turn
@@ -156,19 +174,11 @@ function computerTurn(){
     while (getHandTotal(computerHand).low <= 15){
         computerHand.push(deck[hit])
         hit++
-        computerTurn();
+        render();
     }
     if (getHandTotal(computerHand).low > 21){
         gameMessage.innerText = "Dealer has busted!"
     }
-    //if (getHandTotal(computerHand).low <= 15){
-     //   computerHand.push(deck[hit])
-     //   hit++;
-     //   computerTurn();
-    //} else if (getHandTotal(computerHand).low > 21){
-     //   gameMessage.innerText = "Dealer has busted!"
-   // }
-    //determinePlayerOutcome(playerHand, computerHand)
 }
     // computer will draw card if total less than 15
 // generate deck
@@ -183,4 +193,13 @@ function generateDeck(){
 }
 function shuffleDeck(deck){
    return deck.sort(() => Math.random() - Math.random())
+}
+function generateCardMarkup(hand){
+    const output = []
+    for (let i = 0; i < hand.length; i++){
+        const tempCard = document.createElement("div");
+        tempCard.classList.add(...getCardClasses(hand[i].suit, hand[i].value, hand[i].isFaceDown))
+        output.push(tempCard)
+    }
+    return output; 
 }
