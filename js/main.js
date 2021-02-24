@@ -48,7 +48,8 @@ document.getElementById("deal").addEventListener("click", Deal)
 let hitButton = document.getElementById("hit")
 hitButton.addEventListener("click", Hit)
     //hold
-document.getElementById("hold").addEventListener("click", Hold)
+let holdButton = document.getElementById("hold")
+holdButton.addEventListener("click", Hold)
 
 init() 
 //set up init
@@ -160,7 +161,7 @@ function Hit(){
         holdButton.disabled = true;
         gameMessage.innerText = "Player has Busted!"
     } else if (getHandTotal(playerHand).low === 21){
-        gameMessage.innerText = "I to like to live dangerously"
+        gameMessage.innerText = "I, too, like to live dangerously"
     }
     render();
 }
@@ -177,8 +178,9 @@ function Hold(){
 // computer turn
 function computerTurn(){
     computerHand[0].isFaceDown = false;
+   
     // computer will draw card if total less than 15
-    while (getHandTotal(computerHand).low <= 15){
+    while (getHandTotal(computerHand).low <= 15 && getHandTotal(computerHand).high !== 21){
         computerHand.push(deck[hit])
         hit++
         render();
@@ -186,6 +188,7 @@ function computerTurn(){
     if (getHandTotal(computerHand).low > 21){
         gameMessage.innerText = "Dealer has busted!"
     }
+     render();
 }
     
 // generate deck
