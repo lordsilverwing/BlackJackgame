@@ -10,21 +10,22 @@
     <script defer src="js/main.js"></script>
 </head>
 <body>
-    <h1>BlackJack</h1>
+    <h1>Lord Silverwing's BlackJack</h1>
 <div class= 'main'>
-    <div class= 'score'>
-    <h3>Wins: <span id = 'wintotal'>3</span></h3>
-    <h3>Losses: <span id='tietotal'>2</span> </h3>
-    <h3>Ties: <span id='losstotal'>1</span></h3> 
-    </div>
     <msg id= 'message'>Hi there</msg>
     <ul class ='buttonwrap'>
-    <li><button id="deal">Deal</button></li>
-    <li><button id="hit">Hit</button></li>
-    <li><button id="hold">Hold</button></li>
+        <li><button id="deal">Deal</button></li>
+        <li><button id="hit">Hit</button></li>
+        <li><button id="hold">Hold</button></li>
     </ul>
     <div id= "playerhand"></div>
     <div id= "computerhand"></div>
+    <ul class = 'betting'>
+        <li>Total Chips: </li>
+        <li>Current Bet: </li>
+        <li><button id="raiseBet">Increase</button><button id="reduceBet">Reduce</button></li>
+    </ul>
+
 </div>
 </body>
 </html>

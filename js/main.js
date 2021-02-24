@@ -27,6 +27,8 @@ let handTotal;
 let deck = generateDeck();
     //winner
 let winner;
+let totalChips;
+let currentBet;
 //cache element
     //current player, computer hand
 const handEls = {
@@ -36,11 +38,6 @@ const handEls = {
 // message about game state(win, bust, lose, blackjack)
 const gameMessage = document.getElementById('message')
     //win loses and ties
-const scoreEls = {
-    wins: document.getElementById('wintotal'),
-    losses: document.getElementById('losstotal'),
-    ties: document.getElementById('tietotal')
-}
 // event listeners
     //deal
 document.getElementById("deal").addEventListener("click", Deal)
@@ -50,6 +47,12 @@ hitButton.addEventListener("click", Hit)
     //hold
 let holdButton = document.getElementById("hold")
 holdButton.addEventListener("click", Hold)
+    // increase bet
+let incBetButton = document.getElementById("raiseBet")
+incBetButton.addEventListener("click", increaseBet)
+    // reduce current bet
+let redBetButton = document.getElementById("reduceBet")
+redBetButton.addEventListener("click", reduceBet)
 
 init() 
 //set up init
@@ -60,6 +63,10 @@ function init(){
         computer: 0,
         ties: 0
     }
+    //set current chips
+    totalChips = 100;
+    //set current bet
+    currentBet = 0;
     // set player hand to empty {}
     playerHand = {}
     // set computer hand to empty {}
@@ -150,7 +157,6 @@ function Deal(){
 // set up hit button
 let hit;
 function Hit(){
-    console.log("Hit!")
     //add random card to hand, recalculate total of hand
     playerHand.push(deck[hit])
     hit++;
@@ -189,6 +195,12 @@ function computerTurn(){
         gameMessage.innerText = "Dealer has busted!"
     }
      render();
+}
+function increaseBet(){
+    console.log("red panda!")
+}
+function reduceBet(){
+    console.log("no red panda!")
 }
     
 // generate deck
