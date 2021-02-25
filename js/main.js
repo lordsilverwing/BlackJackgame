@@ -26,7 +26,7 @@ let handTotal;
     //deck
 let deck = generateDeck();
     //winner
-let winner;
+let handWinner;
 let chips;
 let bet;
 //cache element
@@ -43,13 +43,13 @@ const gameMessage = document.getElementById('message')
 // event listeners
     //deal
 dealButton = document.getElementById("deal")
-dealButton.addEventListener("click", Deal)
+dealButton.addEventListener("click", initDeal)
     //hit
 let hitButton = document.getElementById("hit")
-hitButton.addEventListener("click", Hit)
+hitButton.addEventListener("click", initHit)
     //hold
 let holdButton = document.getElementById("stand")
-holdButton.addEventListener("click", Stand)
+holdButton.addEventListener("click", initStand)
     // increase bet
 let incBetButton = document.getElementById("raiseBet")
 incBetButton.addEventListener("click", increaseBet)
@@ -69,7 +69,7 @@ function init(){
     // set computer hand to empty {}
     computerHand = {}
     //set winner to null
-    winner = null;
+    handWinner = null;
     //render()
     render();
 }
@@ -123,22 +123,22 @@ function determinePlayerOutcome(){
 
     if (playerTotal > 21){
         gameMessage.innerText = "Player has busted and lost"
-        winner = -1;
+        handWinner = -1;
     } else if (computerTotal > 21){
         gameMessage.innerText = "The dealer has busted! The player has won!"
-        winner = 1;
+        handWinner = 1;
     } else if (playerTotal === 21 && playerHand.length === 2){
         gameMessage.innerText = "The player has gotten BlackJack and has won!"
-        winner = 1.5;
+        handWinner = 1.5;
     } else if (playerTotal > computerTotal){
         gameMessage.innerText = "The player has won!"
-        winner = 1;
+        handWinner = 1;
     } else if (playerTotal === computerTotal){
         gameMessage.innerText = "Push! The player and computer have tied"
-        winner = 0;
+        handWinner = 0;
     } else {
         gameMessage.innerText = "The Dealer has won!"
-        winner = -1;
+        handWinner = -1;
     }
     betWinLoss();
     incBetButton.disabled = false;
@@ -155,7 +155,7 @@ function determinePlayerOutcome(){
     // else if computer busts and player is lower than 21 player wins
     // else if both computer and player bust = tie
 // set up initiate deal
-function Deal(){
+function initDeal(){
     deck.forEach(card => card.isFaceDown = false)
     shuffleDeck(deck)
     //deals two cards to player
@@ -181,10 +181,11 @@ function Deal(){
 }
 // set up hit button
 let hit;
-function Hit(){
+function initHit(){
     //add random card to hand, recalculate total of hand
     playerHand.push(deck[hit])
     hit++;
+    gameMessage.innerText = "Player has been dealt a card!"
     // if player hand is 21 with more than two cards (end player turn)
     // else if player hand is 21 or more (end player turn, bust)
     if (getHandTotal(playerHand).low > 21){
@@ -198,7 +199,7 @@ function Hit(){
 }
     
 // set up hold button
-function Stand(){
+function initStand(){
     //disables hit, intiates computer turn
     hitButton.disabled = true;
     holdButton.disabled = true;
@@ -233,7 +234,7 @@ function reduceBet(){
     render();
 }
 function betWinLoss(){
-    chips += bet * winner
+    chips += bet * handWinner
     render();
 }
     

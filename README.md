@@ -1,4 +1,4 @@
-# BlackJackgame
+# Lord Silverwing's Blackjack
 HTML,CSS and Javascript CardGame Project 1
 Link to LordSilverwing's Blackjack!
 https://lordsilverwing.github.io/BlackJackgame/
