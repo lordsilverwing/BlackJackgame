@@ -56,6 +56,8 @@ incBetButton.addEventListener("click", increaseBet)
     // reduce current bet
 let redBetButton = document.getElementById("reduceBet")
 redBetButton.addEventListener("click", reduceBet)
+    //reset button to reset game/total
+document.getElementById("reset").addEventListener("click", resetGame)
 
 init() 
 //set up init
@@ -140,14 +142,24 @@ function determinePlayerOutcome(){
         gameMessage.innerText = "The Dealer has won!"
         handWinner = -1;
     }
-    betWinLoss();
     incBetButton.disabled = false;
     redBetButton.disabled = false;
     dealButton.disabled = false;
+    betWinLoss();
     if (chips >= 200){
         gameMessage.innerText = "You've doubled your earnings and won completely! Good job!"
+        dealButton.disabled = true;
+        incBetButton.disabled = true;
+        redBetButton.disabled = true;
+        hitButton.disabled = true;
+        holdButton.disabled = true;
     } else if (chips === 0){
         gameMessage.innerText = "You've gone broke!"
+        dealButton.disabled = true;
+        incBetButton.disabled = true;
+        redBetButton.disabled = true;
+        hitButton.disabled = true;
+        holdButton.disabled = true;
     }
 }
     // if computer hand is 21 with two cards (computer wins unless player won)
@@ -260,4 +272,10 @@ function generateCardMarkup(hand){
         output.push(tempCard)
     }
     return output; 
+}
+function resetGame(){
+    incBetButton.disabled = false;
+    redBetButton.disabled = false;
+    dealButton.disabled = false;
+    init();
 }
