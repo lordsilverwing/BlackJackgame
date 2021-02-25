@@ -47,8 +47,8 @@ document.getElementById("deal").addEventListener("click", Deal)
 let hitButton = document.getElementById("hit")
 hitButton.addEventListener("click", Hit)
     //hold
-let holdButton = document.getElementById("hold")
-holdButton.addEventListener("click", Hold)
+let holdButton = document.getElementById("stand")
+holdButton.addEventListener("click", Stand)
     // increase bet
 let incBetButton = document.getElementById("raiseBet")
 incBetButton.addEventListener("click", increaseBet)
@@ -185,7 +185,7 @@ function Hit(){
 }
     
 // set up hold button
-function Hold(){
+function Stand(){
     //disables hit, intiates computer turn
     hitButton.disabled = true;
     holdButton.disabled = true;
@@ -198,7 +198,7 @@ function computerTurn(){
     computerHand[0].isFaceDown = false;
    
     // computer will draw card if total less than 15
-    while (getHandTotal(computerHand).low <= 15 && getHandTotal(computerHand).high !== 21){
+    while (getHandTotal(computerHand).low <= 16 && getHandTotal(computerHand).high !== 21){
         computerHand.push(deck[hit])
         hit++
         render();
