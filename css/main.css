@@ -32,18 +32,9 @@ h1 {
     text-align: center;
     font-weight: bold;
 }
-.main .score{
-    text-align: center;
-    position: absolute;
-    top: 5%;
-    right: 5%;
-    background-color: #c4c4c4;
-    height: 150px;
-    width: 100px;
-}
 .main .buttonwrap {
     position: absolute;
-    bottom: 10%;
+    bottom: 5%;
     left: 5%;
     list-style-type: none;
     padding: 0;
@@ -65,9 +56,9 @@ h1 {
     align-items: center;
 }
 .main .betting{
-    height: 70px;
+    height: 65px;
     width: 140px;
-    background-color: gray;
+    background-color: #AE7139;
     list-style-type: none;
     position: absolute;
     top: 5%;
@@ -76,7 +67,7 @@ h1 {
     padding: 0;
 }
 .betting button{
-    background-color: #AE7139;
+    background-color: silver;
     height: 30px;
     width: 70px;
 }
