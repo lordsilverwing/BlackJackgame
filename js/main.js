@@ -122,22 +122,24 @@ function determinePlayerOutcome(){
 
     if (playerTotal > 21){
         gameMessage.innerText = "Player has busted and lost"
-        return -1;
+        winner = -1;
     } else if (computerTotal > 21){
         gameMessage.innerText = "The dealer has busted! The player has won!"
-        return 1;
+        winner = 1;
     } else if (playerTotal === 21 && playerHand.length === 2){
         gameMessage.innerText = "The player has gotten BlackJack and has won!"
-        return 1;
+        winner = 1.5;
     } else if (playerTotal > computerTotal){
         gameMessage.innerText = "The player has won!"
-        return 1;
+        winner = 1;
     } else if (playerTotal === computerTotal){
         gameMessage.innerText = "Push! The player and computer have tied"
-        return 0;
+        winner = 0;
     } else {
         gameMessage.innerText = "The Dealer has won!"
+        winner = -1;
     }
+    betWinLoss();
 }
     // if computer hand is 21 with two cards (computer wins unless player won)
     // else if computer hand is 21 or lower compare to player highest wins unless tie
@@ -159,7 +161,9 @@ function Deal(){
     gameMessage.innerText = "The Dealer and Player have been dealt two cards!"
     // if player hand is 21 with two cards (black jack!)
     if (getHandTotal(playerHand).high === 21){
-        gameMessage.innerText = "Player has gotten Blackjack! You win!"
+        hitButton.disabled = true;
+        holdButton.disabled = true;
+        determinePlayerOutcome();
     }
 }
 // set up hit button
@@ -206,16 +210,18 @@ function computerTurn(){
 }
 //increase bet by 10
 function increaseBet(){
-    bet = bet + 10;
-    render()
+    bet = Math.min(bet + 10, chips);
+    
+    render();
 }
 //reduces bet by 10
 function reduceBet(){
-    bet = bet - 10;
-    render()
+    bet = Math.max(bet - 10, 0);
+    render();
 }
 function betWinLoss(){
-
+    chips += bet * winner
+    render();
 }
     
 // generate deck
