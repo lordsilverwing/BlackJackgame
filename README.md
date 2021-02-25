@@ -5,5 +5,6 @@ https://lordsilverwing.github.io/BlackJackgame/
 
 BlackJack Game rules:
     Standard BlackJack game with betting system! Increase and reduce bet by ten, double your money to win! Reach 0 and you have gone broke, no virtual atms allowed.
+    ![Image of Blacjack Wireframe](https://lordsilverwing.github.com/images/BlackJackWireframe.png)
 
 Iceboxed ideas: Work on split system and doubledown. Also maybe resuse code to make a poker game.
