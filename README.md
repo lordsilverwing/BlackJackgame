@@ -3,8 +3,8 @@ HTML,CSS and Javascript CardGame Project 1
 
 [Lord Silverwing's Blackjack](https://lordsilverwing.github.io/BlackJackgame/)
 
-## BlackJack Game rules:
-    Standard BlackJack game with betting system! Increase and reduce bet by ten, double your money to win! Reach 0 and you have gone broke, no virtual atms allowed.
+## Blackjack Game rules:
+Standard BlackJack game with betting system! Increase and reduce bet by ten, double your money to win! Reach 0 and you have gone broke, no virtual atms allowed.
 
 ### Wireframe of the Blackjack game
 ![Blackjack Wire](https://i.imgur.com/YfEPpSW.png)
