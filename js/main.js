@@ -27,14 +27,16 @@ let handTotal;
 let deck = generateDeck();
     //winner
 let winner;
-let totalChips;
-let currentBet;
+let chips;
+let bet;
 //cache element
     //current player, computer hand
 const handEls = {
     player: document.getElementById('playerhand'),
     computer: document.getElementById('computerhand')
 }
+const currentBet = document.getElementById('currentbet')
+const totalChips = document.getElementById('totalchips')
 // message about game state(win, bust, lose, blackjack)
 const gameMessage = document.getElementById('message')
     //win loses and ties
@@ -57,16 +59,10 @@ redBetButton.addEventListener("click", reduceBet)
 init() 
 //set up init
 function init(){
-    //set scores = 0
-    scores = {
-        player: 0,
-        computer: 0,
-        ties: 0
-    }
     //set current chips
-    totalChips = 100;
+    chips = 100;
     //set current bet
-    currentBet = 0;
+    bet = 0;
     // set player hand to empty {}
     playerHand = {}
     // set computer hand to empty {}
@@ -88,10 +84,11 @@ function render(){
     removeAllChildren(handEls.computer)
     generateCardMarkup(playerHand).forEach(card => handEls.player.appendChild(card));
     generateCardMarkup(computerHand).forEach(card => handEls.computer.appendChild(card));
-          
-    
+    //update betting area to dom
+    currentBet.innerText = bet;
+    totalChips.innerText = chips;
 }
-    // update score to dom 
+
  // hand total
 function getHandTotal(hand){
      // create two arrays, high total and low total to handle aces
@@ -124,10 +121,14 @@ function determinePlayerOutcome(){
     const computerTotal = determineHandValue(getHandTotal(computerHand));
 
     if (playerTotal === computerTotal){
+
+        gameMessage.innerText = "Push! The player and dealer have tied."
         return 0;
     } else if (playerTotal > computerTotal){
+        gameMessage.innerText = "The player has won!"
         return 1;
     } else {
+        gameMessage.innerText = "The dealer has won!"
         return -1;
     }
 }
@@ -196,11 +197,18 @@ function computerTurn(){
     }
      render();
 }
+//increase bet by 10
 function increaseBet(){
-    console.log("red panda!")
+    bet = bet + 10;
+    render()
 }
+//reduces bet by 10
 function reduceBet(){
-    console.log("no red panda!")
+    bet = bet - 10;
+    render()
+}
+function betWinLoss(){
+
 }
     
 // generate deck
