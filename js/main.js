@@ -120,16 +120,23 @@ function determinePlayerOutcome(){
     const playerTotal = determineHandValue(getHandTotal(playerHand));
     const computerTotal = determineHandValue(getHandTotal(computerHand));
 
-    if (playerTotal === computerTotal){
-
-        gameMessage.innerText = "Push! The player and dealer have tied."
-        return 0;
+    if (playerTotal > 21){
+        gameMessage.innerText = "Player has busted and lost"
+        return -1;
+    } else if (computerTotal > 21){
+        gameMessage.innerText = "The dealer has busted! The player has won!"
+        return 1;
+    } else if (playerTotal === 21 && playerHand.length === 2){
+        gameMessage.innerText = "The player has gotten BlackJack and has won!"
+        return 1;
     } else if (playerTotal > computerTotal){
         gameMessage.innerText = "The player has won!"
         return 1;
+    } else if (playerTotal === computerTotal){
+        gameMessage.innerText = "Push! The player and computer have tied"
+        return 0;
     } else {
-        gameMessage.innerText = "The dealer has won!"
-        return -1;
+        gameMessage.innerText = "The Dealer has won!"
     }
 }
     // if computer hand is 21 with two cards (computer wins unless player won)
@@ -166,7 +173,7 @@ function Hit(){
     if (getHandTotal(playerHand).low > 21){
         hitButton.disabled = true;
         holdButton.disabled = true;
-        gameMessage.innerText = "Player has Busted!"
+        determinePlayerOutcome();
     } else if (getHandTotal(playerHand).low === 21){
         gameMessage.innerText = "I, too, like to live dangerously"
     }
