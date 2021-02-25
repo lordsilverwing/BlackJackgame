@@ -72,6 +72,7 @@ function init(){
     computerHand = {}
     //set winner to null
     handWinner = null;
+    gameMessage.innerText = "Welcome to BlackJack! Adjust your bet and hit deal to begin!"
     //render()
     render();
 }
