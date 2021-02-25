@@ -10,13 +10,13 @@ Standard BlackJack game with betting system! Increase and reduce bet by ten, dou
 ![Blackjack Wire](https://i.imgur.com/YfEPpSW.png)
 
 ### Opening screen of the game.
-![Blackjack First Screen](https://i.imgur.com/ZgzpdYm.png)
+![Blackjack First Screen](https://i.imgur.com/ARPtzRn.png)
 
 ### Blackjack Deal with a bet placed.
-![Blackjack Deal](https://i.imgur.com/yL0bwjR.png)
+![Blackjack Deal](https://i.imgur.com/JSwOZF4.png)
 
 ### Dealer bust!
-![Blackjack Dealer Bust](https://i.imgur.com/wph1zoj.png)
+![Blackjack Dealer Bust](https://i.imgur.com/i0pqll5.png)
 
 
 ## Iceboxed ideas: 
