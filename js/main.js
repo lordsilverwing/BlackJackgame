@@ -42,7 +42,8 @@ const gameMessage = document.getElementById('message')
     //win loses and ties
 // event listeners
     //deal
-document.getElementById("deal").addEventListener("click", Deal)
+dealButton = document.getElementById("deal")
+dealButton.addEventListener("click", Deal)
     //hit
 let hitButton = document.getElementById("hit")
 hitButton.addEventListener("click", Hit)
@@ -140,6 +141,14 @@ function determinePlayerOutcome(){
         winner = -1;
     }
     betWinLoss();
+    incBetButton.disabled = false;
+    redBetButton.disabled = false;
+    dealButton.disabled = false;
+    if (chips >= 200){
+        gameMessage.innerText = "You've doubled your earnings and won completely! Good job!"
+    } else if (chips === 0){
+        gameMessage.innerText = "You've gone broke!"
+    }
 }
     // if computer hand is 21 with two cards (computer wins unless player won)
     // else if computer hand is 21 or lower compare to player highest wins unless tie
@@ -157,7 +166,10 @@ function Deal(){
     hit = 4;
     hitButton.disabled = false;
     holdButton.disabled = false;
-    render();
+    dealButton.disabled = true;
+    incBetButton.disabled = true;
+    redBetButton.disabled = true;
+
     gameMessage.innerText = "The Dealer and Player have been dealt two cards!"
     // if player hand is 21 with two cards (black jack!)
     if (getHandTotal(playerHand).high === 21){
@@ -165,6 +177,7 @@ function Deal(){
         holdButton.disabled = true;
         determinePlayerOutcome();
     }
+    render();
 }
 // set up hit button
 let hit;
