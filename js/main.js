@@ -58,6 +58,8 @@ incBetButton.addEventListener("click", increaseBet)
 // reduce current bet
 let redBetButton = document.getElementById("reduceBet")
 redBetButton.addEventListener("click", reduceBet)
+let austinPowers = document.getElementById("austinpowers")
+let numberTwo = document.getElementById("number2")
 //reset button to reset game/total
 document.getElementById("reset").addEventListener("click", resetGame)
 init()
@@ -195,16 +197,20 @@ function initHit() {
 	if (getHandTotal(playerHand).low === 21) {
 		timeToWait = 5000;
 		displayMessage("I, too, like to live dangerously")
+        austinPowers.style = ""
 	}
 	if (getHandTotal(playerHand).low === 20) {
 		timeToWait = 5000;
 		displayMessage("I like to live dangerously")
+        numberTwo.style = ""
 	}
 	setTimeout(() => {
 		//add random card to hand, recalculate total of hand
 		playerHand.push(deck[hit])
 		hit++;
 		displayMessage("Player has been dealt a card!")
+        austinPowers.style = "display:none"
+        numberTwo.style = "display:none"
 		// if player hand is 21 with more than two cards (end player turn)
 		// else if player hand is 21 or more (end player turn, bust)
 		if (getHandTotal(playerHand).low > 21) {

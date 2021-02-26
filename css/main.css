@@ -71,3 +71,13 @@ h1 {
     height: 30px;
     width: 70px;
 }
+.main img{
+    position:absolute;
+    bottom: 0%;
+    right: 0%;
+    height: 100px;
+}
+.main #number2{
+    clip: rect(0px,150px,100px,0px);
+    right: -90px;
+}
