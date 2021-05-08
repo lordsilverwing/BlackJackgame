@@ -6,8 +6,6 @@ HTML,CSS and Javascript CardGame Project 1
 ## Blackjack Game rules:
 Standard BlackJack game with betting system! Increase and reduce bet by ten, double your money to win! Reach 0 and you have gone broke, no virtual atms allowed.
 
-### Wireframe of the Blackjack game
-![Blackjack Wire](https://i.imgur.com/YfEPpSW.png)
 
 ### Opening screen of the game.
 ![Blackjack First Screen](https://i.imgur.com/JaetDgL.png)
